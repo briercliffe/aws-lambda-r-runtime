@@ -2,6 +2,23 @@
 
 set -euo pipefail
 
+# Ensure aws is on path
+PATH=$PATH:/opt
+PATH=$PATH:/opt/awscli
+export R_LIBS=/tmp
+
+# Clear out any tmp files so we have enough space
+rm -rf /tmp/*
+
+# Extract libraries from s3 into /tmp
+if [[ -v R_LIBRARY_PATH ]]
+then
+    echo "Loading libraries from $R_LIBRARY_PATH"
+    aws s3 cp $R_LIBRARY_PATH - | tar xz -C /tmp/
+else
+    echo "No library path configured"
+fi
+
 # Processing
 while true
 do
