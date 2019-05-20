@@ -1,3 +1,7 @@
+*.tar.gz
+.netrc
+.Rprofile
+
 *.zip
 *.log
 __pycache__/

@@ -26,6 +26,7 @@ do
    rm -r R/library/$package/
 done
 chmod -R 755 bootstrap runtime.R R/
-zip -r -q runtime.zip runtime.R bootstrap R/
+unzip -q $BASE_DIR/../awscli-layer/build/layer.zip -d .
+zip -r -q runtime.zip runtime.R bootstrap R/ awscli/
 mkdir -p $BUILD_DIR/dist/
 mv runtime.zip $BUILD_DIR/dist/

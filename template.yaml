@@ -11,18 +11,12 @@ Resources:
     Type: 'AWS::Serverless::Function'
     Properties:
       Handler: script.handler
+      Timeout: 500
+      Environment:
+        Variables:
+          R_LIBRARY_PATH: s3://wl-dg-ncf-tool/rlibs/library.tar.gz
   RuntimeLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
       LayerName: runtime
       ContentUri: runtime/build/layer/
-  RecommendedLayer:
-    Type: AWS::Serverless::LayerVersion
-    Properties:
-      LayerName: runtime
-      ContentUri: recommended/build/layer/
-  AWSLayer:
-    Type: AWS::Serverless::LayerVersion
-    Properties:
-      LayerName: runtime
-      ContentUri: awspack/build/layer/
